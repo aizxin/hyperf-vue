@@ -14,4 +14,9 @@ use Hyperf\HttpServer\Router\Router;
 
 Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index');
 
-
+Router::addGroup('/admin/',function (){
+    Router::addGroup('auth/',function (){
+        Router::post('login','App\Controller\Admin\AuthController@login');
+        Router::post('user','App\Controller\Admin\AuthController@user');
+    });
+});

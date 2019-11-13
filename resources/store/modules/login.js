@@ -33,7 +33,7 @@ export default {
             return new Promise((resolve, reject) => {
                 let token = cache.getToken()
                 getUser(token).then(res => {
-                    if (res.code === 2000) {
+                    if (res.code === 200) {
                         commit('SET_USER', res.data)
                         resolve(res.data)
                     } else {
