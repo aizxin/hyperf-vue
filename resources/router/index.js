@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // 视图组件
-// const PageView = () => import('@/layout/PageView')
+const PageView = () => import('@/layout/PageView')
 
 Vue.use(Router)
 
@@ -39,7 +39,32 @@ export const asyncRoutes = [
             icon: 'user',
             title: '用户管理'
         }
-    }
+    },
+    {
+        name: 'excel',
+        path: 'excel',
+        component: PageView,
+        meta: {
+            icon: 'excel'
+        },
+        children: [
+            {
+                name: 'exportExcel',
+                path: 'exportExcel',
+                component: () => import('@/pages/index/children/user')
+            },
+            {
+                name: 'exportSelected',
+                path: 'exportSelected',
+                component: () => import('@/pages/index/children/user')
+            },
+            {
+                name: 'importExcel',
+                path: 'importExcel',
+                component: () => import('@/pages/index/children/user')
+            }
+        ]
+    },
 ]
 
 // 本地路由
