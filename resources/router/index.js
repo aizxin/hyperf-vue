@@ -21,84 +21,97 @@ Vue.use(Router)
 
 // 异步路由
 export const asyncRoutes = [
-    {
-        name: 'dashboard',
-        path: 'dashboard',
-        component: () => import('@/pages/index/children/dashboard'),
-        meta: {
-            icon: 'dashboard',
-            title: '主页',
-            affix: true
-        }
+  {
+    name: 'dashboard',
+    path: 'dashboard',
+    component: () => import('@/pages/index/children/dashboard'),
+    meta: {
+      icon: 'dashboard',
+      title: '主页',
+      affix: true
+    }
+  },
+  {
+    name: 'user',
+    path: 'user',
+    component: PageView,
+    meta: {
+      icon: 'user',
+      title: '用户管理'
     },
-    {
-        name: 'user',
-        path: 'user',
-        component: () => import('@/pages/index/children/user'),
-        meta: {
-            icon: 'user',
-            title: '用户管理'
-        }
+    children: [
+      {
+        name: '后台管理员',
+        path: 'admin',
+        component: () => import('@/pages/user/admin')
+      },
+      {
+        name: '用户管理',
+        path: 'member',
+        component: () => import('@/pages/index/children/user')
+      }
+    ]
+  },
+  {
+    name: 'excel',
+    path: 'excel',
+    component: PageView,
+    meta: {
+      icon: 'excel',
+      title: '文章管理'
     },
-    {
-        name: 'excel',
-        path: 'excel',
-        component: PageView,
-        meta: {
-            icon: 'excel'
-        },
-        children: [
-            {
-                name: 'exportExcel',
-                path: 'exportExcel',
-                component: () => import('@/pages/index/children/user')
-            },
-            {
-                name: 'exportSelected',
-                path: 'exportSelected',
-                component: () => import('@/pages/index/children/user')
-            },
-            {
-                name: 'importExcel',
-                path: 'importExcel',
-                component: () => import('@/pages/index/children/user')
-            }
-        ]
-    },
+    children: [
+      {
+        name: 'exportExcel',
+        path: 'exportExcel',
+        component: () => import('@/pages/index/children/user')
+      },
+      {
+        name: 'exportSelected',
+        path: 'exportSelected',
+        component: () => import('@/pages/index/children/user')
+      },
+      {
+        name: 'importExcel',
+        path: 'importExcel',
+        component: () => import('@/pages/index/children/user')
+      }
+    ]
+  },
 ]
 
 // 本地路由
 export const localRoutes = [
-    {
-        path: '',
-        redirect: '/login'
-    },
-    {
-        path: '/login',
-        component: () => import('@/pages/login/login')
-    },
-    {
-        path: '/page401',
-        component: () => import('@/pages/other/page401')
-    },
-    {
-        path: '/page404',
-        component: () => import('@/pages/other/page404')
-    }
+  {
+    path: '',
+    redirect: '/login'
+  },
+  {
+    path: '/login',
+    component: () => import('@/pages/login/login')
+  },
+  {
+    path: '/page401',
+    component: () => import('@/pages/other/page401')
+  },
+  {
+    path: '/page404',
+    component: () => import('@/pages/other/page404')
+  }
 ]
 
 const createRouter = () => new Router({
-    // mode: 'history',
-    routes: localRoutes,
-    scrollBehavior: () => ({ y: 0 })
+  // mode: 'history',
+  routes: localRoutes,
+  scrollBehavior: () => ({y: 0})
 })
 
 const router = createRouter()
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
-    const newRouter = createRouter()
-    router.matcher = newRouter.matcher // reset router
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // reset router
 }
 
 export default router

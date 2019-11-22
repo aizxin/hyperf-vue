@@ -1,22 +1,29 @@
 <template>
     <div id="dashboard">
-        Dashboard
+        <app-card/>
     </div>
 </template>
 <script>
-export default {
+  import appCard from './components/card'
+
+  export default {
     name: 'dashboard',
     data() {
-        return {
-        }
+      return {}
     },
     mounted() {
     },
-    methods: {
-    }
-}
+    components: {
+      appCard
+    },
+    methods: {}
+  }
 </script>
-<style lang='stylus'>
-#dashboard {
-}
+<style lang='stylus' scoped>
+    #dashboard {
+        padding-top: 10px;
+        padding-bottom: 20px;
+        padding-right: 30px;
+        background-color: #fff;
+    }
 </style>

@@ -26,6 +26,10 @@ Vue.config.productionTip = false
 Vue.use(ElementUI, { size: 'small' })
 Vue.use(VueProgressBar)
 
+// 动态数据 插件
+import vueNumTo from 'vue-num-to'
+Vue.use(vueNumTo)
+
 new Vue({
     router,
     store,
