@@ -37,12 +37,7 @@
             icon: 'message',
             title: '评论数',
             endVal: random(2000, 5000)
-          },
-          // {
-          //   icon: 'qq',
-          //   title: 'QQ group',
-          //   endVal: 338241465
-          // }
+          }
         ]
       }
     }

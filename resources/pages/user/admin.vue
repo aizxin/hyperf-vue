@@ -93,12 +93,12 @@
 </template>
 <script>
   // import {getList} from '@/api/admin'
-  // import appDialog from './dialog'
+  import appDialog from './admin-add'
 
   export default {
     name: 'admin',
     components: {
-      // appDialog
+      appDialog
     },
     data() {
       return {
@@ -130,35 +130,28 @@
           console.log(res)
           this.tableJson = res.data
           this.total = res.totalCount = res.data.length
-          // this.total = res.totalCount
           if (loading) this.loading = false
         }).catch(() => {
           if (loading) this.loading = false
         })
       },
       createAction(form) {
-        // createList(form).then(res => {
         this.getTableList()
         this.createVisible = false
         this.$message.success('新增成功')
-        // })
       },
       editAction(form) {
-        // editList(form).then(res => {
         this.getTableList(false, this.listQuery.currentPage)
         this.editVisible = false
         this.$message.success('修改成功')
-        // })
       },
       deleteAction(item, index) {
         this.$confirm(`确定要删除【${item.sound.name}】吗？`, {
           title: '提示',
           type: 'warning'
         }).then(() => {
-          // editList(form).then(res => {
           this.getTableList(false, this.listQuery.currentPage)
           this.$message.success('删除成功')
-          // })
         }).catch(() => {
         })
       },
