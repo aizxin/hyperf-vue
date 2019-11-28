@@ -1,6 +1,7 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
+
 /**
  * This file is part of Hyperf.
  *
@@ -14,9 +15,14 @@ use Hyperf\HttpServer\Router\Router;
 
 Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index');
 
-Router::addGroup('/admin/',function (){
-    Router::addGroup('auth/',function (){
-        Router::post('login','App\Controller\Admin\AuthController@login');
-        Router::post('user','App\Controller\Admin\AuthController@user');
+Router::addGroup('/admin/', function () {
+    Router::addGroup('auth/', function () {
+        Router::post('login', 'App\Controller\Admin\AuthController@login');
+        Router::post('user', 'App\Controller\Admin\AuthController@user');
     });
+});
+
+// websocket
+Router::addServer('ws', function () {
+    Router::get('/', \App\WebSocket\SocketEvent::class);
 });
