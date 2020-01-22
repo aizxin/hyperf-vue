@@ -30,7 +30,9 @@ abstract class Transformer
     {
         if ( ! $items) return [];
 
-        return array_map([$this, 'transform'], $items);
+        return array_map(function ($item) {
+            return $this->transform($item);
+        }, $items);
     }
 
     /**

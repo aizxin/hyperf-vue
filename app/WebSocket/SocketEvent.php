@@ -31,6 +31,7 @@ class SocketEvent implements OnOpenInterface, OnMessageInterface, OnCloseInterfa
     public function onMessage(Server $server, Frame $frame): void
     {
         var_dump('onMessage');
+        var_dump($frame);
         // TODO: Implement onMessage() method.
     }
 
